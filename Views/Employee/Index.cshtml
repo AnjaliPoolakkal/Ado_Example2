@@ -1,0 +1,100 @@
+﻿@model Ado_Example2.Models.Employee
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Index</title>
+    <style type="text/css">
+        body {
+            font-family: Arial;
+            font-size: 10pt;
+        }
+
+        table {
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+
+            table th {
+                background-color: #B8DBFD;
+                color: #333;
+                font-weight: bold;
+            }
+
+            table th, table td {
+                padding: 5px;
+                border: 1px solid #ccc;
+            }
+
+            table, table table td {
+                border: 0px solid #ccc;
+            }
+
+        input[type=text], select {
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("Index", "Employee", FormMethod.Post))
+        {
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <th colspan="2" align="center">Employee Details</th>
+                </tr>
+                <tr>
+                    <td>Name: </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.Name)
+                    </td>
+                </tr>
+                <tr>
+                    <td>City: </td>
+                    <td>
+                        @Html.DropDownListFor(m => m.City, new List<SelectListItem>
+                        { new SelectListItem{Text="India", Value="India"},
+                          new SelectListItem{Text="China", Value="China"},
+                          new SelectListItem{Text="Australia", Value="Australia"},
+                          new SelectListItem{Text="France", Value="France"},
+                          new SelectListItem{Text="Unites States", Value="Unites States"},
+                          new SelectListItem{Text="Russia", Value="Russia"},
+                          new SelectListItem{Text="Canada", Value="Canada"}},
+                          "Please select")
+                    </td>
+                </tr>
+                <tr>
+                    <td>Address: </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.Address)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Submit" /></td>
+                </tr>
+            </table>
+        }
+
+
+        @if (Model != null)
+        {
+            <script type="text/javascript">
+            $(function () {
+                alert("Inserted  ID: " + @Model.Id);
+                console.logo("ok");
+            });
+            </script>
+        }
+    </div>
+</body>
+</html>
+
+
